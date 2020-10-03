@@ -1,0 +1,23 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="DarkTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="MainTheme">
+        <item name="android:background">#963FD5</item>
+    </style>
+        <style name="SecondTheme">
+        <item name="android:background">#5B2680</item>
+    </style>
+    <style name="CardTheme">
+        <item name="android:background">#A767D5</item>
+    </style>
+</resources>

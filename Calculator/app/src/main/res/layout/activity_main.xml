@@ -17,7 +17,7 @@
     android:ellipsize="start"
     android:textSize="40sp"
     android:singleLine="true"
-    /> а
+    />
     <TextView
         android:id="@+id/result_text"
         android:layout_width="match_parent"
