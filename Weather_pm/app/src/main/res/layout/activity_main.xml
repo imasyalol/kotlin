@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Погода"
-            android:textSize="45dp"
+            android:text="@string/weather"
+            android:textSize="45sp"
             android:textColor="#CAC4B0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/weather_img"
+            android:id="@+id/icon"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@drawable/cloudy"
@@ -36,13 +36,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/temperature"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="32"
                 android:textColor="#CAC4B0"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -50,8 +50,8 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="25dp"
-                android:text="°C"/>
+                android:textSize="25sp"
+                android:text="@string/degree"/>
 
 
 
@@ -61,9 +61,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Санкт-Петербург"
+            android:text="@string/spb"
             android:textColor="#CAC4B0"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:layout_marginBottom="3dp"
             />
     </LinearLayout>
@@ -79,7 +79,8 @@
             android:background="#963FD5"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -94,12 +95,13 @@
                     android:layout_height="100dp"
                     android:src="@drawable/wind"/>
                 <TextView
+                    android:id="@+id/WindFLow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="2 м/с"
                     android:textColor="#CAC4B0"
                     android:textSize="30sp"/>
+
 
             </LinearLayout>
             <LinearLayout
@@ -115,10 +117,10 @@
                     android:layout_height="100dp"
                     android:src="@drawable/drop"/>
                 <TextView
+                    android:id="@+id/humidity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="5%"
                     android:textColor="#CAC4B0"
                     android:textSize="30sp"/>
 
@@ -135,10 +137,10 @@
                     android:layout_height="100dp"
                     android:src="@drawable/barometer"/>
                 <TextView
+                    android:id="@+id/pressure"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="777 мм"
                     android:textColor="#CAC4B0"
                     android:textSize="30sp"/>
 
@@ -150,7 +152,7 @@
             android:fillViewport="true">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#963FD5"
                 android:orientation="horizontal"
@@ -165,7 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ПН"
+                        android:text="@string/monday"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -176,7 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="25°С"
+                        android:text="@string/_25"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -191,7 +193,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ВТ"
+                        android:text="@string/tuesday"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -202,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="25°С"
+                        android:text="@string/_25"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -217,7 +219,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="СР"
+                        android:text="@string/wednesday"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -228,7 +230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="29°С"
+                        android:text="@string/_29"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -243,7 +245,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ЧТ"
+                        android:text="@string/th"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -254,7 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="19°С"
+                        android:text="@string/_19"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -269,7 +271,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ПТ"
+                        android:text="@string/pt"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -280,7 +282,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="25°С"
+                        android:text="@string/_25"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -295,7 +297,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="СБ"
+                        android:text="@string/saturday"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -306,7 +308,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="33°С"
+                        android:text="@string/_33"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
@@ -321,7 +323,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ВС"
+                        android:text="@string/sunday"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
@@ -332,7 +334,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="25°С"
+                        android:text="@string/_25"
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
 
