@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Weather_pm</string>
     <string name="saturday">СБ</string>
-    <string name="_33">33°С</string>
+    <string name="_33">2°С</string>
     <string name="weather">Погода</string>
     <string name="_32">32</string>
     <string name="degree">°C</string>
@@ -10,11 +10,11 @@
     <string name="_5">5%</string>
     <string name="th">ЧТ</string>
     <string name="sunday">ВС</string>
-    <string name="_25">25°С</string>
+    <string name="_25">3°С</string>
     <string name="_777">777 мм</string>
-    <string name="_19">19°С</string>
+    <string name="_19">-1°С</string>
     <string name="pt">ПТ</string>
-    <string name="_29">29°С</string>
+    <string name="_29">0°С</string>
     <string name="wednesday">СР</string>
     <string name="wind_flow">wind flow</string>
     <string name="tuesday">ВТ</string>

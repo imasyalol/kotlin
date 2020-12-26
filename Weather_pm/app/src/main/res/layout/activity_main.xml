@@ -36,22 +36,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/temperature"
+                android:id="@+id/textView"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="center"
                 android:textColor="#CAC4B0"
                 android:textSize="25sp"
                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="25sp"
-                android:text="@string/degree"/>
+
 
 
 
@@ -95,7 +88,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/wind"/>
                 <TextView
-                    android:id="@+id/WindFLow"
+                    android:id="@+id/textViewWindFLow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -117,7 +110,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/drop"/>
                 <TextView
-                    android:id="@+id/humidity"
+                    android:id="@+id/textViewHumidity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -137,7 +130,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/barometer"/>
                 <TextView
-                    android:id="@+id/pressure"
+                    android:id="@+id/textViewCloudy"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -162,7 +155,8 @@
                     android:layout_height="match_parent"
                     android:background="#A767D5"
                     android:layout_marginRight="3dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginEnd="3dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -171,10 +165,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daymonday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/cloudy"/>
                     <TextView
+                        android:id="@+id/textViewTempPN"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -197,10 +193,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daytuesday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/cloudy"/>
                     <TextView
+                        android:id="@+id/textViewTempVT"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -223,10 +221,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daywednesday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/rain"/>
                     <TextView
+                        android:id="@+id/textViewTempSR"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -249,10 +249,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daythursday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/cloudy"/>
                     <TextView
+                        android:id="@+id/textViewTempCT"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -275,10 +277,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/dayfriday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/rain"/>
                     <TextView
+                        android:id="@+id/textViewTempPT"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -301,10 +305,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daysaturday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/cloudy"/>
                     <TextView
+                        android:id="@+id/textViewTempSB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -327,10 +333,12 @@
                         android:textColor="#CAC4B0"
                         android:textSize="30sp"/>
                     <ImageView
+                        android:id="@+id/daysunday"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/rain"/>
                     <TextView
+                        android:id="@+id/textViewTempVS"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
