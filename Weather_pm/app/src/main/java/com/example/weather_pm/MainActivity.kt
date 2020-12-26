@@ -7,6 +7,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.moshi.Json
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +18,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import kotlin.math.roundToInt
+import io.reactivex.Single
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 
 class WeatherResponse(
@@ -53,9 +58,9 @@ class MainActivity : AppCompatActivity() {
         const val URL = "https://api.openweathermap.org/data/2.5/"
     }
 
-    interface OpenWeatherMapService {
+    interface OpenWeatherMapServiceRX {
         @GET("onecall?lat=59.937500&lon=30.308611&exclude=minutely,hourly,alerts&units=metric&appid=508af3c89d5fdcb4b9f030cea26e964e")
-        fun listWeather(): Call<WeatherResponse>
+        fun listWeather(): Single<WeatherResponse>
     }
 
     private var flagTheme = false
@@ -63,9 +68,11 @@ class MainActivity : AppCompatActivity() {
         Retrofit.Builder()
             .baseUrl(URL)
             .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
-    private val service = retrofit.create(OpenWeatherMapService::class.java)
-    private var call: Call<WeatherResponse>? = service.listWeather()
+    private val service: OpenWeatherMapServiceRX = retrofit.create(OpenWeatherMapServiceRX::class.java)
+
+    private var rxResponse: Single<WeatherResponse>? = service.listWeather()
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,23 +96,34 @@ class MainActivity : AppCompatActivity() {
             textViewTempVS.text = prefs.getString("textViewTempVS", "")!!
         }
 
-
-        call?.enqueue(object : Callback<WeatherResponse> {
-            @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
-                if (response.code() == 200) {
-                    val weatherResponse = response.body()!!
+        rxResponse
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe(object : DisposableSingleObserver<WeatherResponse>() {
+                override fun onSuccess(weatherResponse: WeatherResponse) {
+//                    TODO("Not yet implemented")
+                    Log.d("SUCCESS", "${weatherResponse.current.weather}")
                     editor.putInt("textView", weatherResponse.current.temp.roundToInt()).apply()
                     val t = weatherResponse.current.temp.roundToInt()
                     if (t > 0) {
-                        editor.putString("textView", "${t}°C").apply()
+                        editor.putString("textView", "+${t}°C").apply()
                     } else {
                         editor.putString("textView", "${t}°C").apply()
                     }
-                    editor.putString("textView2", weatherResponse.timezone + "\n" + weatherResponse.current.weather[0].main).apply()
-                    editor.putString("textViewWindFLow", weatherResponse.current.wind_speed.toString()).apply()
-                    editor.putString("textViewCloudy", weatherResponse.current.clouds.toString()).apply()
-                    editor.putString("textViewHumidity", weatherResponse.current.humidity.toString()).apply()
+                    editor.putString(
+                        "textView2",
+                        weatherResponse.timezone + "\n" + weatherResponse.current.weather[0].main
+                    ).apply()
+                    editor.putString(
+                        "textViewWindFLow",
+                        weatherResponse.current.wind_speed.toString()
+                    ).apply()
+                    editor.putString("textViewCloudy", weatherResponse.current.clouds.toString())
+                        .apply()
+                    editor.putString(
+                        "textViewHumidity",
+                        weatherResponse.current.humidity.toString()
+                    ).apply()
                     val icon1 = weatherResponse.current.weather[0].icon
                     Picasso.get()
                         .load("https://openweathermap.org/img/wn/$icon1@2x.png")
@@ -125,7 +143,8 @@ class MainActivity : AppCompatActivity() {
                             if (index != 0) {
                                 val tempNow = day.temp.day.roundToInt()
                                 if (tempNow >= 0) {
-                                    editor.putString(textViewTempDay[index - 1], "$tempNow").apply()
+                                    editor.putString(textViewTempDay[index - 1], "+$tempNow")
+                                        .apply()
                                 } else {
                                     editor.putString(textViewTempDay[index - 1], "$tempNow").apply()
                                 }
@@ -133,15 +152,17 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     genSaveEveryDay(weatherResponse.daily)
+                    setViewInfo()
                 }
-                setViewInfo()
-            }
 
-            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                setViewInfo()
-            }
-        })
+
+                override fun onError(e: Throwable) {
+                    setViewInfo()
+                    Log.d("Error!!!", "onError $e")
+                }
+            })
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -151,8 +172,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        call?.cancel()
-        call = null
+        rxResponse = null
     }
 
 }
